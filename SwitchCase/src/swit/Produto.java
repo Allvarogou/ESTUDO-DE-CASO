@@ -1,19 +1,11 @@
-package swit;
+package classes;
 
-public class Produto {
+public class Produtos {
 
 	private String Nproduto; // Nome do produto
 	private String PVD; // Preço de venda
 	private String PC; // Preço de custo
 	private Fornecedor fornecedor;
-
-	public Fornecedor getFornecedor() {
-		return fornecedor;
-	}
-
-	public void setFornecedor(Fornecedor fornecedor) {
-		this.fornecedor = fornecedor;
-	}
 
 	public String getNproduto() {
 		return Nproduto;
