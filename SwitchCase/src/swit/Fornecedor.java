@@ -1,6 +1,6 @@
 package swit;
 
-public class Fornecedor {
+public class Fornecedor extends Produto {
 
 	private String nome;
 	private int id;
@@ -31,3 +31,4 @@ public class Fornecedor {
 	}
 
 }
+
