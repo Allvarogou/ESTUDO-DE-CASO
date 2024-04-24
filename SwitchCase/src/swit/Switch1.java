@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Switch1 extends Fornecedor {
-	ArrayList<Fornecedor> fornecedores = new ArrayList<>();
-
 	public static void main(String[] args) {
-
+		ArrayList<Fornecedor> forn = new ArrayList<>();
+		
+		
 		Scanner leitura = new Scanner(System.in);
 
 		String[] vetorA = new String[20];
@@ -33,13 +33,14 @@ public class Switch1 extends Fornecedor {
 			switch (op) {
 
 			case 1:
-
+			Produto produto1 = new Produto();
+			
 				System.out.println("Digite o produto a ser cadastrado: ");
-				for (int i = 0; i < vetorA.length; i++) {
-					String palavra = leitura.nextLine();
-					vetorA[i] = palavra;
-				}
-
+				String nomeproduto = leitura.nextLine();
+				produto1.setNproduto(nomeproduto);
+				
+				//System.out.println(getNproduto);
+			
 				break;
 
 			case 2:
@@ -53,14 +54,14 @@ public class Switch1 extends Fornecedor {
 				break;
 
 			case 3:
-				System.out.println("Digite o índice do produto as er excluido (0 a " + (vetorA.length - 1) + "): ");
+				System.out.println("Digite o indice do produto as er excluido (0 a " + (vetorA.length - 1) + "): ");
 				int indiceLimpar = Integer.parseInt(leitura.nextLine());
 				if (indiceLimpar >= 0 && indiceLimpar < vetorA.length) {
 					vetorA[indiceLimpar] = null;
 					System.out.println("Produto excluido com sucesso!");
 				} else {
 
-					System.out.println("Índice inválido.");
+					System.out.println("Indice invalido.");
 				}
 
 				break;
@@ -80,12 +81,12 @@ public class Switch1 extends Fornecedor {
 				}
 
 				if (!encontrada) {
-					System.out.println("Produto não encontrado.");
+					System.out.println("Produto nao encontrado.");
 				}
 				break;
 
 			case 5:
-				System.out.println("Digite o índice do produto a ser alterada (0 a " + (vetorA.length - 1) + "): ");
+				System.out.println("Digite o Indice do produto a ser alterada (0 a " + (vetorA.length - 1) + "): ");
 				int indiceAlterar = Integer.parseInt(leitura.nextLine());
 				if (indiceAlterar >= 0 && indiceAlterar < vetorA.length) {
 					System.out.println("Digite o novo produto: ");
@@ -95,13 +96,13 @@ public class Switch1 extends Fornecedor {
 
 				} else {
 
-					System.out.println("Índice inválido.");
+					System.out.println("Indice invalido.");
 				}
 
 				break;
 
 			default:
-				System.out.println("Opção inválida. Encerrando o programa.");
+				System.out.println("Opçao invalida. Encerrando o programa.");
 
 				op = 0;
 
