@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Switch1 extends Fornecedor {
 	public static void main(String[] args) {
-		ArrayList<Fornecedor> forn = new ArrayList<>();
+		
 		
 		
 		Scanner leitura = new Scanner(System.in);
@@ -25,7 +25,7 @@ public class Switch1 extends Fornecedor {
 			System.out.println("03 - Excluir produto");
 			System.out.println("04 - Procurar produto");
 			System.out.println("05 - Altere Produto");
-
+			ArrayList<Produto> produtos = new ArrayList<>();
 			String opcao = leitura.nextLine();
 
 			op = Integer.valueOf(opcao);
@@ -33,24 +33,60 @@ public class Switch1 extends Fornecedor {
 			switch (op) {
 
 			case 1:
-			Produto produto1 = new Produto();
+			Produto p1 = new Produto();
 			
-				System.out.println("Digite o produto a ser cadastrado: ");
+				System.out.println("Digite o nome do produto a ser cadastrado: ");
 				String nomeproduto = leitura.nextLine();
-				produto1.setNproduto(nomeproduto);
+				p1.setNproduto(nomeproduto);
+				
+				System.out.println("Escreva o preço de venda: ");
+		        String pcdv = leitura.nextLine();
+		        float valorFloat2 = Float.parseFloat(pcdv);
+				p1.setPVD(valorFloat2);
+		        
+		        
+				System.out.println("Escreva o preço de custo: ");
+				String pcd = leitura.nextLine();
+				float valorFloat = Float.parseFloat(pcd);
+				p1.setPVD(valorFloat);
+				
+				Produto p2 = new Produto();
+				
+				System.out.println("Digite o nome do produto a ser cadastrado: ");
+				String nomeproduto2 = leitura.nextLine();
+				p2.setNproduto(nomeproduto2);
+				
+				System.out.println("Escreva o preço de venda: ");
+		        String pcdv2 = leitura.nextLine();
+		        float valorFloat3 = Float.parseFloat(pcdv);
+				p2.setPVD(valorFloat2);
+		        
+				System.out.println("Escreva o preço de custo: ");
+				String pcd2 = leitura.nextLine();
+				float valorFloat4 = Float.parseFloat(pcd);
+				p2.setPVD(valorFloat);
+				
+				
+				produtos.add(p1);
+				produtos.add(p2);
+				
 				
 				//System.out.println(getNproduto);
 			
 				break;
 
-			case 2:
-				System.out.println("Produto a ser cadastrado: ");
-				for (String palavra : vetorA) {
-					if (palavra != null) {
-						System.out.println(palavra);
-					}
+			case 2: // case 2 não esta funcionando
+				
+				System.out.println("Listar produtos: "); 
+				for (Produto produto : produtos) {
+					
+				 System.out.println("Nome: " + produto.getNproduto());
+                 System.out.println("Preço de custo: " + produto.getPC());
+                 System.out.println("Preço de venda: " + produto.getPVD());
+                 System.out.println("Fornecedor: " + produto.getFornecedor());
+                 System.out.println(); 
 				}
-
+								
 				break;
 
 			case 3:
