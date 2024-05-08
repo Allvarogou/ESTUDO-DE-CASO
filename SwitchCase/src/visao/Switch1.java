@@ -78,7 +78,9 @@ public class Switch1 extends Produto {
 				System.out.println("Excluir Produto:");
 				System.out.println("Digite o nome do produto a ser excluído: ");
 				String nomeProdutoExcluir = leitura.nextLine();
-
+					// buscar por id
+				
+					//CHAMAR POR ID
 				for (Produto produto : dao.listar()) {
 					if (produto.getNproduto().equals(nomeProdutoExcluir)) {
 						// produtos.remove(produto);
