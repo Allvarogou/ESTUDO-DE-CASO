@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 import modelo.Produto;
 
-public class produtoDAO {
+public class ProdutoDAO {
 	
 	private ArrayList<Produto> estoque  ;
 	private int geradorId;
 	
-	public produtoDAO() {
+	public ProdutoDAO() {
 		this.estoque = new ArrayList<>();
 		this.geradorId = 0;
 	}
@@ -22,7 +22,7 @@ public class produtoDAO {
 			estoque.add(produto);
 		}
 		
-		return produto.getId;
+		return produto.getId();
 	}
 	
 	public ArrayList<Produto> listar() {
