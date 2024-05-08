@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Switch1 extends Fornecedor { 
 	public static void main(String[] args) { 
 		 
+		ArrayList<Produto> produtos = new ArrayList<>(); 
 		 
 		 
 		Scanner leitura = new Scanner(System.in); 
@@ -25,14 +26,18 @@ public class Switch1 extends Fornecedor {
 			System.out.println("03 - Excluir produto"); 
 			System.out.println("04 - Procurar produto"); 
 			System.out.println("05 - Altere Produto"); 
-			ArrayList<Produto> produtos = new ArrayList<>(); 
+			
+			
+			
 			String opcao = leitura.nextLine(); 
+		
  
 			op = Integer.valueOf(opcao); 
  
 			switch (op) { 
  
 			case 1: 
+				
 			Produto p1 = new Produto(); 
 			 
 				System.out.println("Digite o nome do produto a ser cadastrado: "); 
@@ -48,27 +53,30 @@ public class Switch1 extends Fornecedor {
 				System.out.println("Escreva o preço de custo: "); 
 				String pcd = leitura.nextLine(); 
 				float valorFloat = Float.parseFloat(pcd); 
-				p1.setPVD(valorFloat); 
+				p1.setPC(valorFloat); 
+				
+				produtos.add(p1);  
+				
+				//Produto p2 = new Produto(); 
 				 
-				Produto p2 = new Produto(); 
+				//System.out.println("Digite o nome do produto a ser cadastrado: "); 
+				//String nomeproduto2 = leitura.nextLine(); 
+				//p2.setNproduto(nomeproduto2); 
 				 
-				System.out.println("Digite o nome do produto a ser cadastrado: "); 
-				String nomeproduto2 = leitura.nextLine(); 
-				p2.setNproduto(nomeproduto2); 
-				 
-				System.out.println("Escreva o preço de venda: "); 
-		        String pcdv2 = leitura.nextLine(); 
-		        float valorFloat3 = Float.parseFloat(pcdv); 
-				p2.setPVD(valorFloat2); 
+				//System.out.println("Escreva o preço de venda: "); 
+		        //String pcdv2 = leitura.nextLine(); 
+		        //float valorFloat3 = Float.parseFloat(pcdv); 
+		        
+				//p2.setPVD(valorFloat2); 
 		         
-				System.out.println("Escreva o preço de custo: "); 
-				String pcd2 = leitura.nextLine(); 
-				float valorFloat4 = Float.parseFloat(pcd); 
-				p2.setPVD(valorFloat); 
+				//System.out.println("Escreva o preço de custo: "); 
+				//String pcd2 = leitura.nextLine(); 
+				//float valorFloat4 = Float.parseFloat(pcd); 
+				//p2.setPVD(valorFloat); 
 				 
 				 
-				produtos.add(p1); 
-				produtos.add(p2); 
+	
+				//produtos.add(p2); 
 				 
 				 
 				//System.out.println(getNproduto); 
@@ -85,10 +93,10 @@ public class Switch1 extends Fornecedor {
 			        // Imprimindo as informações de cada produto
 			        for (Produto produto : produtos) {
 			            System.out.println("---------------------------------");
-			            System.out.println("Nome: " + produto.getNproduto());
+			            System.out.println(produto.getNproduto());
 			            System.out.println("Preço de Venda: " + produto.getPVD());
 			            System.out.println("Preço de Custo: " + produto.getPC());
-			            System.out.println("Fornecedor: " + produto.getFornecedor().getNome()); // Acessando o fornecedor
+			            System.out.println("Fornecedor: " + produto.getFornecedor()); // Acessando o fornecedor
 			            System.out.println("---------------------------------");
 			        }
 			    }
