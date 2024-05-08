@@ -3,11 +3,11 @@ package swit;
 import java.util.ArrayList; 
 import java.util.Scanner; 
  
-public class Switch1 extends Fornecedor { 
+public class Switch1 extends Produto { 
 	public static void main(String[] args) { 
 		 
 		ArrayList<Produto> produtos = new ArrayList<>(); 
-		 
+		
 		 
 		Scanner leitura = new Scanner(System.in); 
  
@@ -37,6 +37,9 @@ public class Switch1 extends Fornecedor {
 			switch (op) { 
  
 			case 1: 
+				for (int i = 0; i < 2; i++) {
+					
+				
 				
 			Produto p1 = new Produto(); 
 			 
@@ -56,31 +59,8 @@ public class Switch1 extends Fornecedor {
 				p1.setPC(valorFloat); 
 				
 				produtos.add(p1);  
+				}
 				
-				//Produto p2 = new Produto(); 
-				 
-				//System.out.println("Digite o nome do produto a ser cadastrado: "); 
-				//String nomeproduto2 = leitura.nextLine(); 
-				//p2.setNproduto(nomeproduto2); 
-				 
-				//System.out.println("Escreva o preço de venda: "); 
-		        //String pcdv2 = leitura.nextLine(); 
-		        //float valorFloat3 = Float.parseFloat(pcdv); 
-		        
-				//p2.setPVD(valorFloat2); 
-		         
-				//System.out.println("Escreva o preço de custo: "); 
-				//String pcd2 = leitura.nextLine(); 
-				//float valorFloat4 = Float.parseFloat(pcd); 
-				//p2.setPVD(valorFloat); 
-				 
-				 
-	
-				//produtos.add(p2); 
-				 
-				 
-				//System.out.println(getNproduto); 
-			 
 				break; 
  
 			case 2:
@@ -96,7 +76,6 @@ public class Switch1 extends Fornecedor {
 			            System.out.println(produto.getNproduto());
 			            System.out.println("Preço de Venda: " + produto.getPVD());
 			            System.out.println("Preço de Custo: " + produto.getPC());
-			            System.out.println("Fornecedor: " + produto.getFornecedor()); // Acessando o fornecedor
 			            System.out.println("---------------------------------");
 			        }
 			    }
@@ -105,19 +84,16 @@ public class Switch1 extends Fornecedor {
 
 			case 3:
 			    System.out.println("Excluir Produto:");
+			    System.out.println("Digite o nome do produto a ser excluído: ");
+                String nomeProdutoExcluir = leitura.nextLine();
 
-			    // Solicitando o índice do produto a ser excluído
-			    System.out.print("Digite o índice do produto a ser excluído (0 a " + (produtos.size() - 1) + "): ");
-			    int indiceExcluir = Integer.parseInt(leitura.nextLine());
-
-			    // Verificando se o índice é válido
-			    if (indiceExcluir >= 0 && indiceExcluir < produtos.size()) {
-			        produtos.remove(indiceExcluir);
-			        System.out.println("Produto excluído com sucesso!");
-			    } else {
-			        System.out.println("Índice inválido. Nenhum produto foi excluído.");
-			    }
-
+                for (Produto produto : produtos) {
+                    if (produto.getNproduto().equals(nomeProdutoExcluir)) {
+                        produtos.remove(produto);
+                        System.out.println("Produto excluído com sucesso!");
+                        break;
+                    }
+                }
 			    break;
 
  
@@ -138,7 +114,6 @@ public class Switch1 extends Fornecedor {
 			            System.out.println("Nome: " + produto.getNproduto());
 			            System.out.println("Preço de Venda: " + produto.getPVD());
 			            System.out.println("Preço de Custo: " + produto.getPC());
-			            System.out.println("Fornecedor: " + produto.getFornecedor().getNome());
 			            System.out.println("---------------------------------");
 			            produtoEncontrado = true;
 			            break; // Encontrou o produto, pode parar a iteração

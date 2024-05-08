@@ -1,6 +1,6 @@
 package swit; 
  
-public class Produto { 
+public class Produto extends Fornecedor{ 
  
 	private String Nproduto; // Nome do produto 
 	private Float PVD; // Preço de venda 
