@@ -1,151 +1,191 @@
-package swit;
+package swit; 
+ 
+import java.util.ArrayList; 
+import java.util.Scanner; 
+ 
+public class Switch1 extends Fornecedor { 
+	public static void main(String[] args) { 
+		 
+		 
+		 
+		Scanner leitura = new Scanner(System.in); 
+ 
+		String[] vetorA = new String[20]; 
+ 
+		int op = 0; 
+ 
+		do { 
+ 
+			System.out.println("Menu"); 
+			System.out.println("Escolha uma das alternativas: "); 
+			System.out.println("======================================================"); 
+			System.out.println("00 - Para encerrar o produto"); 
+			System.out.println("01 - Cadastrar produto"); 
+			System.out.println("02 - Listar produto"); 
+			System.out.println("03 - Excluir produto"); 
+			System.out.println("04 - Procurar produto"); 
+			System.out.println("05 - Altere Produto"); 
+			ArrayList<Produto> produtos = new ArrayList<>(); 
+			String opcao = leitura.nextLine(); 
+ 
+			op = Integer.valueOf(opcao); 
+ 
+			switch (op) { 
+ 
+			case 1: 
+			Produto p1 = new Produto(); 
+			 
+				System.out.println("Digite o nome do produto a ser cadastrado: "); 
+				String nomeproduto = leitura.nextLine(); 
+				p1.setNproduto(nomeproduto); 
+				 
+				System.out.println("Escreva o preço de venda: "); 
+		        String pcdv = leitura.nextLine(); 
+		        float valorFloat2 = Float.parseFloat(pcdv); 
+				p1.setPVD(valorFloat2); 
+		         
+		         
+				System.out.println("Escreva o preço de custo: "); 
+				String pcd = leitura.nextLine(); 
+				float valorFloat = Float.parseFloat(pcd); 
+				p1.setPVD(valorFloat); 
+				 
+				Produto p2 = new Produto(); 
+				 
+				System.out.println("Digite o nome do produto a ser cadastrado: "); 
+				String nomeproduto2 = leitura.nextLine(); 
+				p2.setNproduto(nomeproduto2); 
+				 
+				System.out.println("Escreva o preço de venda: "); 
+		        String pcdv2 = leitura.nextLine(); 
+		        float valorFloat3 = Float.parseFloat(pcdv); 
+				p2.setPVD(valorFloat2); 
+		         
+				System.out.println("Escreva o preço de custo: "); 
+				String pcd2 = leitura.nextLine(); 
+				float valorFloat4 = Float.parseFloat(pcd); 
+				p2.setPVD(valorFloat); 
+				 
+				 
+				produtos.add(p1); 
+				produtos.add(p2); 
+				 
+				 
+				//System.out.println(getNproduto); 
+			 
+				break; 
+ 
+			case 2:
+			    System.out.println("Lista de Produtos:");
 
-import java.util.ArrayList;
-import java.util.Scanner;
+			    // Verificando se a lista está vazia
+			    if (produtos.isEmpty()) {
+			        System.out.println("Não há produtos cadastrados.");
+			    } else {
+			        // Imprimindo as informações de cada produto
+			        for (Produto produto : produtos) {
+			            System.out.println("---------------------------------");
+			            System.out.println("Nome: " + produto.getNproduto());
+			            System.out.println("Preço de Venda: " + produto.getPVD());
+			            System.out.println("Preço de Custo: " + produto.getPC());
+			            System.out.println("Fornecedor: " + produto.getFornecedor().getNome()); // Acessando o fornecedor
+			            System.out.println("---------------------------------");
+			        }
+			    }
 
-public class Switch1 extends Fornecedor {
-	public static void main(String[] args) {
-		
-		
-		
-		Scanner leitura = new Scanner(System.in);
-
-		String[] vetorA = new String[20];
-
-		int op = 0;
-
-		do {
-
-			System.out.println("Menu");
-			System.out.println("Escolha uma das alternativas: ");
-			System.out.println("======================================================");
-			System.out.println("00 - Para encerrar o produto");
-			System.out.println("01 - Cadastrar produto");
-			System.out.println("02 - Listar produto");
-			System.out.println("03 - Excluir produto");
-			System.out.println("04 - Procurar produto");
-			System.out.println("05 - Altere Produto");
-			ArrayList<Produto> produtos = new ArrayList<>();
-			String opcao = leitura.nextLine();
-
-			op = Integer.valueOf(opcao);
-
-			switch (op) {
-
-			case 1:
-			Produto p1 = new Produto();
-			
-				System.out.println("Digite o nome do produto a ser cadastrado: ");
-				String nomeproduto = leitura.nextLine();
-				p1.setNproduto(nomeproduto);
-				
-				System.out.println("Escreva o preço de venda: ");
-		        String pcdv = leitura.nextLine();
-		        float valorFloat2 = Float.parseFloat(pcdv);
-				p1.setPVD(valorFloat2);
-		        
-		        
-				System.out.println("Escreva o preço de custo: ");
-				String pcd = leitura.nextLine();
-				float valorFloat = Float.parseFloat(pcd);
-				p1.setPVD(valorFloat);
-				
-				Produto p2 = new Produto();
-				
-				System.out.println("Digite o nome do produto a ser cadastrado: ");
-				String nomeproduto2 = leitura.nextLine();
-				p2.setNproduto(nomeproduto2);
-				
-				System.out.println("Escreva o preço de venda: ");
-		        String pcdv2 = leitura.nextLine();
-		        float valorFloat3 = Float.parseFloat(pcdv);
-				p2.setPVD(valorFloat2);
-		        
-				System.out.println("Escreva o preço de custo: ");
-				String pcd2 = leitura.nextLine();
-				float valorFloat4 = Float.parseFloat(pcd);
-				p2.setPVD(valorFloat);
-				
-				
-				produtos.add(p1);
-				produtos.add(p2);
-				
-				
-				//System.out.println(getNproduto);
-			
-				break;
-
-			case 2: // case 2 não esta funcionando
-				
-				System.out.println("Listar produtos: "); 
-				for (Produto produto : produtos) {
-					
-				 System.out.println("Nome: " + produto.getNproduto());
-                 System.out.println("Preço de custo: " + produto.getPC());
-                 System.out.println("Preço de venda: " + produto.getPVD());
-                 System.out.println("Fornecedor: " + produto.getFornecedor());
-                 System.out.println(); 
-				}
-								
-				break;
+			    break;
 
 			case 3:
-				System.out.println("Digite o indice do produto as er excluido (0 a " + (vetorA.length - 1) + "): ");
-				int indiceLimpar = Integer.parseInt(leitura.nextLine());
-				if (indiceLimpar >= 0 && indiceLimpar < vetorA.length) {
-					vetorA[indiceLimpar] = null;
-					System.out.println("Produto excluido com sucesso!");
-				} else {
+			    System.out.println("Excluir Produto:");
 
-					System.out.println("Indice invalido.");
-				}
+			    // Solicitando o índice do produto a ser excluído
+			    System.out.print("Digite o índice do produto a ser excluído (0 a " + (produtos.size() - 1) + "): ");
+			    int indiceExcluir = Integer.parseInt(leitura.nextLine());
 
-				break;
+			    // Verificando se o índice é válido
+			    if (indiceExcluir >= 0 && indiceExcluir < produtos.size()) {
+			        produtos.remove(indiceExcluir);
+			        System.out.println("Produto excluído com sucesso!");
+			    } else {
+			        System.out.println("Índice inválido. Nenhum produto foi excluído.");
+			    }
 
+			    break;
+
+ 
 			case 4:
-				System.out.println("Digite o produto a ser procurado: ");
-				String palavraProcurada = leitura.nextLine();
-				boolean encontrada = false;
-				
-				for (String palavra : vetorA) {
-					if (palavra != null && palavra.equals(palavraProcurada)) {
-						System.out.println("Produto encontrado!");
-						encontrada = true;
-						break;
-					}
+			    System.out.println("Procurar Produto:");
 
-				}
+			    // Solicitando o nome do produto a ser procurado
+			    System.out.print("Digite o nome do produto a ser procurado: ");
+			    String nomeProcurado = leitura.nextLine();
 
-				if (!encontrada) {
-					System.out.println("Produto nao encontrado.");
-				}
-				break;
+			    // Variável para controle da busca
+			    boolean produtoEncontrado = false;
+
+			    // Iterando pela lista de produtos
+			    for (Produto produto : produtos) {
+			        if (produto.getNproduto().equalsIgnoreCase(nomeProcurado)) {
+			            System.out.println("---------------------------------");
+			            System.out.println("Nome: " + produto.getNproduto());
+			            System.out.println("Preço de Venda: " + produto.getPVD());
+			            System.out.println("Preço de Custo: " + produto.getPC());
+			            System.out.println("Fornecedor: " + produto.getFornecedor().getNome());
+			            System.out.println("---------------------------------");
+			            produtoEncontrado = true;
+			            break; // Encontrou o produto, pode parar a iteração
+			        }
+			    }
+
+			    if (!produtoEncontrado) {
+			        System.out.println("Produto não encontrado.");
+			    }
+
+			    break;
 
 			case 5:
-				System.out.println("Digite o Indice do produto a ser alterada (0 a " + (vetorA.length - 1) + "): ");
-				int indiceAlterar = Integer.parseInt(leitura.nextLine());
-				if (indiceAlterar >= 0 && indiceAlterar < vetorA.length) {
-					System.out.println("Digite o novo produto: ");
-					String novaPalavra = leitura.nextLine();
-					vetorA[indiceAlterar] = novaPalavra;
-					System.out.println("Produto alterado com sucesso!");
+			    System.out.println("Alterar Produto:");
 
-				} else {
+			    // Solicitando o índice do produto a ser alterado
+			    System.out.print("Digite o índice do produto a ser alterado (0 a " + (produtos.size() - 1) + "): ");
+			    int indiceAlterar = Integer.parseInt(leitura.nextLine());
 
-					System.out.println("Indice invalido.");
-				}
+			    // Verificando se o índice é válido
+			    if (indiceAlterar >= 0 && indiceAlterar < produtos.size()) {
+			        // Objeto do produto a ser alterado
+			        Produto produtoAlterar = produtos.get(indiceAlterar);
 
-				break;
+			        // Solicitando o novo nome do produto
+			        System.out.print("Digite o novo nome do produto: ");
+			        produtoAlterar.setNproduto(leitura.nextLine());
 
-			default:
-				System.out.println("Opçao invalida. Encerrando o programa.");
+			        // Solicitando o novo preço de venda
+			        System.out.print("Digite o novo preço de venda: ");
+			        String pcdv1 = leitura.nextLine();
+			        produtoAlterar.setPVD(Float.parseFloat(pcdv1));
 
-				op = 0;
+			        // Solicitando o novo preço de custo
+			        System.out.print("Digite o novo preço de custo: ");
+			        String pcd1 = leitura.nextLine();
+			        produtoAlterar.setPC(Float.parseFloat(pcd1));
 
-			}
+			        // Mensagem de sucesso
+			        System.out.println("Produto alterado com sucesso!");
+			    } else {
+			        System.out.println("Índice inválido. Nenhum produto foi alterado.");
+			    }
 
-		} while (op != 0);
-
-	}
-
+			    break;
+ 
+			default: 
+				System.out.println("Opçao invalida. Encerrando o programa."); 
+ 
+				op = 0; 
+ 
+			} 
+ 
+		} while (op != 0); 
+ 
+	} 
+ 
 }
