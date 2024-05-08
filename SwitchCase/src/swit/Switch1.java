@@ -3,10 +3,11 @@ package swit;
 import java.util.ArrayList; 
 import java.util.Scanner; 
  
-public class Switch1 extends Fornecedor { 
+public class Switch1 extends Produto { 
 	public static void main(String[] args) { 
 		 
-		 
+		ArrayList<Produto> produtos = new ArrayList<>(); 
+		
 		 
 		Scanner leitura = new Scanner(System.in); 
  
@@ -25,14 +26,21 @@ public class Switch1 extends Fornecedor {
 			System.out.println("03 - Excluir produto"); 
 			System.out.println("04 - Procurar produto"); 
 			System.out.println("05 - Altere Produto"); 
-			ArrayList<Produto> produtos = new ArrayList<>(); 
+			
+			
+			
 			String opcao = leitura.nextLine(); 
+		
  
 			op = Integer.valueOf(opcao); 
  
 			switch (op) { 
  
 			case 1: 
+				for (int i = 0; i < 2; i++) {
+					
+				
+				
 			Produto p1 = new Produto(); 
 			 
 				System.out.println("Digite o nome do produto a ser cadastrado: "); 
@@ -48,31 +56,11 @@ public class Switch1 extends Fornecedor {
 				System.out.println("Escreva o preço de custo: "); 
 				String pcd = leitura.nextLine(); 
 				float valorFloat = Float.parseFloat(pcd); 
-				p1.setPVD(valorFloat); 
-				 
-				Produto p2 = new Produto(); 
-				 
-				System.out.println("Digite o nome do produto a ser cadastrado: "); 
-				String nomeproduto2 = leitura.nextLine(); 
-				p2.setNproduto(nomeproduto2); 
-				 
-				System.out.println("Escreva o preço de venda: "); 
-		        String pcdv2 = leitura.nextLine(); 
-		        float valorFloat3 = Float.parseFloat(pcdv); 
-				p2.setPVD(valorFloat2); 
-		         
-				System.out.println("Escreva o preço de custo: "); 
-				String pcd2 = leitura.nextLine(); 
-				float valorFloat4 = Float.parseFloat(pcd); 
-				p2.setPVD(valorFloat); 
-				 
-				 
-				produtos.add(p1); 
-				produtos.add(p2); 
-				 
-				 
-				//System.out.println(getNproduto); 
-			 
+				p1.setPC(valorFloat); 
+				
+				produtos.add(p1);  
+				}
+				
 				break; 
  
 			case 2:
@@ -85,10 +73,9 @@ public class Switch1 extends Fornecedor {
 			        // Imprimindo as informações de cada produto
 			        for (Produto produto : produtos) {
 			            System.out.println("---------------------------------");
-			            System.out.println("Nome: " + produto.getNproduto());
+			            System.out.println(produto.getNproduto());
 			            System.out.println("Preço de Venda: " + produto.getPVD());
 			            System.out.println("Preço de Custo: " + produto.getPC());
-			            System.out.println("Fornecedor: " + produto.getFornecedor().getNome()); // Acessando o fornecedor
 			            System.out.println("---------------------------------");
 			        }
 			    }
@@ -97,86 +84,59 @@ public class Switch1 extends Fornecedor {
 
 			case 3:
 			    System.out.println("Excluir Produto:");
+			    System.out.println("Digite o nome do produto a ser excluído: ");
+                String nomeProdutoExcluir = leitura.nextLine();
 
-			    // Solicitando o índice do produto a ser excluído
-			    System.out.print("Digite o índice do produto a ser excluído (0 a " + (produtos.size() - 1) + "): ");
-			    int indiceExcluir = Integer.parseInt(leitura.nextLine());
-
-			    // Verificando se o índice é válido
-			    if (indiceExcluir >= 0 && indiceExcluir < produtos.size()) {
-			        produtos.remove(indiceExcluir);
-			        System.out.println("Produto excluído com sucesso!");
-			    } else {
-			        System.out.println("Índice inválido. Nenhum produto foi excluído.");
-			    }
-
+                for (Produto produto : produtos) {
+                    if (produto.getNproduto().equals(nomeProdutoExcluir)) {
+                        produtos.remove(produto);
+                        System.out.println("Produto excluído com sucesso!");
+                        break;
+                    }
+                }
 			    break;
 
  
 			case 4:
-			    System.out.println("Procurar Produto:");
+                System.out.println("Digite o nome do produto a ser procurado: ");
+                String nomeProdutoProcurar = leitura.nextLine();
 
-			    // Solicitando o nome do produto a ser procurado
-			    System.out.print("Digite o nome do produto a ser procurado: ");
-			    String nomeProcurado = leitura.nextLine();
+                for (Produto produto : produtos) {
+                    if (produto.getNproduto().equals(nomeProdutoProcurar)) {
+                        System.out.println("Produto encontrado:");
+                        System.out.println("Nome: " + produto.getNproduto());
+                        System.out.println("Preço de Venda: " + produto.getPVD());
+                        System.out.println("Preço de Custo: " + produto.getPC());
+                        break;
+                    }
+                }
+                break;
 
-			    // Variável para controle da busca
-			    boolean produtoEncontrado = false;
+			 case 5:
+                 System.out.println("Digite o nome do produto a ser alterado: ");
+                 String nomeProdutoAlterar = leitura.nextLine();
 
-			    // Iterando pela lista de produtos
-			    for (Produto produto : produtos) {
-			        if (produto.getNproduto().equalsIgnoreCase(nomeProcurado)) {
-			            System.out.println("---------------------------------");
-			            System.out.println("Nome: " + produto.getNproduto());
-			            System.out.println("Preço de Venda: " + produto.getPVD());
-			            System.out.println("Preço de Custo: " + produto.getPC());
-			            System.out.println("Fornecedor: " + produto.getFornecedor().getNome());
-			            System.out.println("---------------------------------");
-			            produtoEncontrado = true;
-			            break; // Encontrou o produto, pode parar a iteração
-			        }
-			    }
+                 for (Produto produto : produtos) {
+                     if (produto.getNproduto().equals(nomeProdutoAlterar)) {
+                         System.out.println("Digite o novo nome do produto: ");
+                         String novoNomeProduto = leitura.nextLine();
+                         produto.setNproduto(novoNomeProduto);
 
-			    if (!produtoEncontrado) {
-			        System.out.println("Produto não encontrado.");
-			    }
+                         System.out.println("Digite o novo preço de venda: ");
+                         String novoPVD = leitura.nextLine();
+                         float novoValorFloat2 = Float.parseFloat(novoPVD);
+                         produto.setPVD(novoValorFloat2);
 
-			    break;
+                         System.out.println("Digite o novo preço de custo: ");
+                         String novoPCD = leitura.nextLine();
+                         float novoValorFloat = Float.parseFloat(novoPCD);
+                         produto.setPC(novoValorFloat);
 
-			case 5:
-			    System.out.println("Alterar Produto:");
-
-			    // Solicitando o índice do produto a ser alterado
-			    System.out.print("Digite o índice do produto a ser alterado (0 a " + (produtos.size() - 1) + "): ");
-			    int indiceAlterar = Integer.parseInt(leitura.nextLine());
-
-			    // Verificando se o índice é válido
-			    if (indiceAlterar >= 0 && indiceAlterar < produtos.size()) {
-			        // Objeto do produto a ser alterado
-			        Produto produtoAlterar = produtos.get(indiceAlterar);
-
-			        // Solicitando o novo nome do produto
-			        System.out.print("Digite o novo nome do produto: ");
-			        produtoAlterar.setNproduto(leitura.nextLine());
-
-			        // Solicitando o novo preço de venda
-			        System.out.print("Digite o novo preço de venda: ");
-			        String pcdv1 = leitura.nextLine();
-			        produtoAlterar.setPVD(Float.parseFloat(pcdv1));
-
-			        // Solicitando o novo preço de custo
-			        System.out.print("Digite o novo preço de custo: ");
-			        String pcd1 = leitura.nextLine();
-			        produtoAlterar.setPC(Float.parseFloat(pcd1));
-
-			        // Mensagem de sucesso
-			        System.out.println("Produto alterado com sucesso!");
-			    } else {
-			        System.out.println("Índice inválido. Nenhum produto foi alterado.");
-			    }
-
-			    break;
- 
+                         System.out.println("Produto alterado com sucesso!");
+                         break;
+                     }
+                 }
+                 break;
 			default: 
 				System.out.println("Opçao invalida. Encerrando o programa."); 
  
