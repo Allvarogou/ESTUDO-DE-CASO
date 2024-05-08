@@ -3,6 +3,7 @@ package visao;
 import java.util.ArrayList; 
 import java.util.Scanner;
 
+import controle.produtoDAO;
 import modelo.Produto; 
  
 public class Switch1 extends Produto { 
@@ -39,6 +40,7 @@ public class Switch1 extends Produto {
 			switch (op) { 
  
 			case 1: 
+				
 				for (int i = 0; i < 2; i++) {
 					
 				
@@ -60,7 +62,8 @@ public class Switch1 extends Produto {
 				float valorFloat = Float.parseFloat(pcd); 
 				p1.setPC(valorFloat); 
 				
-				produtos.add(p1);  
+				produtoDAO dao = new produtoDAO();
+				dao.inserir(p1);
 				}
 				
 				break; 

@@ -6,7 +6,16 @@ public class Produto extends Fornecedor{
 	private Float PVD; // Preço de venda 
 	private Float PC; // Preço de custo 
 	private Fornecedor fornecedor; 
-	 
+	private int id;
+	
+	
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getNproduto() { 
 		return Nproduto; 
 	} 
