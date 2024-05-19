@@ -1,144 +1,93 @@
 package visao;
 
-import java.util.ArrayList;
 import java.util.Scanner;
-
-import controle.ProdutoDAO;
+import controle.ProdutoController;
 import modelo.Produto;
 
-public class Switch1 extends Produto {
-	public static void main(String[] args) {
-		ProdutoDAO dao = new ProdutoDAO();
-		Scanner leitura = new Scanner(System.in);
+public class Switch1 {
+    public static void main(String[] args) {
+        ProdutoController controller = new ProdutoController();
+        Scanner leitura = new Scanner(System.in);
+        int op = 0;
 
-		// String[] vetorA = new String[20];
+        do {
+            System.out.println("Menu");
+            System.out.println("Escolha uma das alternativas: ");
+            System.out.println("======================================================");
+            System.out.println("00 - Para encerrar o produto");
+            System.out.println("01 - Cadastrar produto");
+            System.out.println("02 - Listar produto");
+            System.out.println("03 - Excluir produto");
+            System.out.println("04 - Procurar produto");
+            System.out.println("05 - Altere Produto");
 
-		int op = 0;
+            String opcao = leitura.nextLine();
+            op = Integer.valueOf(opcao);
 
-		do {
+            switch (op) {
+                case 1:
+                    System.out.println("Digite o nome do produto a ser cadastrado: ");
+                    String nomeProduto = leitura.nextLine();
+                    System.out.println("Escreva o preço de venda: ");
+                    float pvd = Float.parseFloat(leitura.nextLine());
+                    System.out.println("Escreva o preço de custo: ");
+                    float pc = Float.parseFloat(leitura.nextLine());
+                    int id = controller.adicionarProduto(nomeProduto, pvd, pc);
+                    System.out.println("Produto cadastrado com ID: " + id);
+                    break;
 
-			System.out.println("Menu");
-			System.out.println("Escolha uma das alternativas: ");
-			System.out.println("======================================================");
-			System.out.println("00 - Para encerrar o produto");
-			System.out.println("01 - Cadastrar produto");
-			System.out.println("02 - Listar produto");
-			System.out.println("03 - Excluir produto");
-			System.out.println("04 - Procurar produto");
-			System.out.println("05 - Altere Produto");
+                case 2:
+                    System.out.println("Lista de Produtos:");
+                    controller.listarProdutos();
+                    break;
 
-			String opcao = leitura.nextLine();
+                case 3:
+                    System.out.println("Excluir Produto:");
+                    System.out.println("Digite o ID do produto a ser excluído: ");
+                    int idExcluir = Integer.parseInt(leitura.nextLine());
+                    if (controller.excluirProduto(idExcluir)) {
+                        System.out.println("Produto excluído com sucesso!");
+                    } else {
+                        System.out.println("Produto não encontrado.");
+                    }
+                    break;
 
-			op = Integer.valueOf(opcao);
+                case 4:
+                    System.out.println("Digite o ID do produto a ser procurado: ");
+                    int idProcurar = Integer.parseInt(leitura.nextLine());
+                    Produto produtoEncontrado = controller.procurarProduto(idProcurar);
+                    if (produtoEncontrado != null) {
+                        System.out.println("Produto encontrado:");
+                        System.out.println("ID: " + produtoEncontrado.getId());
+                        System.out.println("Nome: " + produtoEncontrado.getNproduto());
+                        System.out.println("Preço de Venda: " + produtoEncontrado.getPVD());
+                        System.out.println("Preço de Custo: " + produtoEncontrado.getPC());
+                    } else {
+                        System.out.println("Produto não encontrado.");
+                    }
+                    break;
 
-			switch (op) {
+                case 5:
+                    System.out.println("Digite o ID do produto a ser alterado: ");
+                    int idAlterar = Integer.parseInt(leitura.nextLine());
+                    System.out.println("Digite o novo nome do produto: ");
+                    String novoNomeProduto = leitura.nextLine();
+                    System.out.println("Digite o novo preço de venda: ");
+                    float novoPVD = Float.parseFloat(leitura.nextLine());
+                    System.out.println("Digite o novo preço de custo: ");
+                    float novoPCD = Float.parseFloat(leitura.nextLine());
+                    if (controller.alterarProduto(idAlterar, novoNomeProduto, novoPVD, novoPCD)) {
+                        System.out.println("Produto alterado com sucesso!");
+                    } else {
+                        System.out.println("Produto não encontrado.");
+                    }
+                    break;
 
-			case 1:
-
-				Produto p1 = new Produto();
-
-				System.out.println("Digite o nome do produto a ser cadastrado: ");
-				String nomeproduto = leitura.nextLine();
-				p1.setNproduto(nomeproduto);
-
-				System.out.println("Escreva o preço de venda: ");
-				String pcdv = leitura.nextLine();
-				float valorFloat2 = Float.parseFloat(pcdv);
-				p1.setPVD(valorFloat2);
-
-				System.out.println("Escreva o preço de custo: ");
-				String pcd = leitura.nextLine();
-				float valorFloat = Float.parseFloat(pcd);
-				p1.setPC(valorFloat);
-
-				dao.inserir(p1);
-
-				break;
-
-			case 2:
-				System.out.println("Lista de Produtos:");
-
-				// Verificando se a lista está vazia
-				if (dao.listar().isEmpty()) {
-					System.out.println("Não há produtos cadastrados.");
-				} else {
-					// Imprimindo as informações de cada produto
-					for (Produto produto : dao.listar()) {
-						System.out.println("---------------------------------");
-						System.out.println(produto.getNproduto());
-						System.out.println("Preço de Venda: " + produto.getPVD());
-						System.out.println("Preço de Custo: " + produto.getPC());
-						System.out.println("---------------------------------");
-					}
-				}
-
-				break;
-
-			case 3:
-				System.out.println("Excluir Produto:");
-				System.out.println("Digite o nome do produto a ser excluído: ");
-				String nomeProdutoExcluir = leitura.nextLine();
-					// buscar por id
-				
-					//CHAMAR POR ID
-				for (Produto produto : dao.listar()) {
-					if (produto.getNproduto().equals(nomeProdutoExcluir)) {
-						// produtos.remove(produto);
-						System.out.println("Produto excluído com sucesso!");
-						break;
-					}
-				}
-				break;
-
-			case 4:
-				System.out.println("Digite o nome do produto a ser procurado: ");
-				String nomeProdutoProcurar = leitura.nextLine();
-
-				for (Produto produto : dao.listar()) {
-					if (produto.getNproduto().equals(nomeProdutoProcurar)) {
-						System.out.println("Produto encontrado:");
-						System.out.println("Nome: " + produto.getNproduto());
-						System.out.println("Preço de Venda: " + produto.getPVD());
-						System.out.println("Preço de Custo: " + produto.getPC());
-						break;
-					}
-				}
-				break;
-
-			case 5:
-				System.out.println("Digite o nome do produto a ser alterado: ");
-				String nomeProdutoAlterar = leitura.nextLine();
-
-				for (Produto produto : dao.listar()) {
-					if (produto.getNproduto().equals(nomeProdutoAlterar)) {
-						System.out.println("Digite o novo nome do produto: ");
-						String novoNomeProduto = leitura.nextLine();
-						produto.setNproduto(novoNomeProduto);
-
-						System.out.println("Digite o novo preço de venda: ");
-						String novoPVD = leitura.nextLine();
-						float novoValorFloat2 = Float.parseFloat(novoPVD);
-						produto.setPVD(novoValorFloat2);
-
-						System.out.println("Digite o novo preço de custo: ");
-						String novoPCD = leitura.nextLine();
-						float novoValorFloat = Float.parseFloat(novoPCD);
-						produto.setPC(novoValorFloat);
-
-						System.out.println("Produto alterado com sucesso!");
-						break;
-					}
-				}
-				break;
-			default:
-				System.out.println("Opçao invalida. Encerrando o programa.");
-
-				op = 0;
-
-			}
-
-		} while (op != 0);
-
-	}
-
+                default:
+                    System.out.println("Opção inválida. Encerrando o programa.");
+                    op = 0;
+            }
+        } while (op != 0);
+        leitura.close();
+    }
 }
